@@ -2,7 +2,9 @@
 
 Deterministic AI writing pattern removal for Claude Code.
 
-Most "humanizer" skills tell the model to "watch for" AI patterns. The model skims, does a surface pass, and claims it's done. deslop doesn't ask. It forces a mandatory 6-step pipeline with scoring gates, binary checklists, and zero-tolerance rules. Every sentence gets checked against every rule. Every run shows proof of work.
+Most "humanizer" skills tell the model to "watch for" AI patterns. The model skims, does a surface pass, and claims it's done. deslop doesn't ask. It forces a mandatory 6-step pipeline with scoring gates, binary checklists, and hard zeros. Every sentence gets checked against every rule.
+
+Version 1.1 adds three things on top: it runs quietly, it can learn your voice, and it adjusts to who you're writing to.
 
 ## Why this exists
 
@@ -13,47 +15,50 @@ The built-in humanizer skill and similar tools fail because their processes are 
 - Flags patterns like em dashes in the audit, then leaves them in the output
 - Claims completion on unfinished work
 
-deslop fixes this by replacing "watch for" language with "ZERO allowed" rules, adding quantifiable gates, and requiring the model to show its work.
+deslop fixes this with required steps, quantifiable gates, and a checklist that must fully pass. Clean text still isn't enough, though. It has to sound like you, at the right level of formality for the reader.
+
+## What's new in 1.1
+
+- **Quiet by default.** deslop does the scan, scoring, audit, and checklist internally, then shows you the final text and a one-line summary. Say "deslop audit" to see all the work.
+- **Voice profiles.** Build a private profile of how you write and deslop will match it. See [voice/README.md](voice/README.md).
+- **Audience scaling.** A note to your accountant comes out clean and direct. A text to a friend comes out loose. No forced casualness in professional writing.
+- **Message mode.** Catches email, Slack, and text tells: "I hope this finds you well", "Just wanted to", "Happy to help with anything", over-thanking, bulleted recaps of simple things, bold headers in short emails, and recap closing paragraphs.
+- **Whitelist instead of blanket bans.** Purposeful -ly words (only, likely, early, nearly) and passive voice with an unknown actor are allowed. Em dashes, emojis, and curly quotes are still zero.
+- **Self-flagging.** When deslop catches a recurring tell that isn't on a list yet, it suggests adding it.
+
+See [CHANGELOG.md](CHANGELOG.md) for details.
 
 ## What it catches
 
-- **79 banned vocabulary words** across 3 tiers (always replace, context-dependent, density flags)
-- **100+ banned phrases** across 10 categories (throat-clearing, filler, performative candor, sycophantic artifacts, business jargon, etc.)
-- **20 structural pattern bans** (em dashes, rule of three, anaphora, binary contrasts, false agency, passive voice, etc.)
-- **12 before/after examples** for calibration
+- **Banned vocabulary** across 3 tiers (always replace, context-dependent, density flags), plus a whitelist of -ly words that are fine in moderation
+- **100+ banned phrases** across 11 categories, including email and message tells
+- **26 structural patterns** (rule of three, anaphora, binary contrasts, false agency, bulleted recaps, bold headers in short emails, and more)
+- **Before/after examples** for calibration, including an email reply and audience scaling
 
 ## The pipeline
 
-Six mandatory steps. No skipping. Must show work.
+Six mandatory steps. In the default mode they run silently. In audit mode you see each one.
 
-1. **SCAN** — Process every sentence against all ban lists. Output pattern counts with specific instances.
-2. **REWRITE** — Apply all fixes. Zero-tolerance enforcement on em dashes, adverbs, emojis, bold, title case.
-3. **SOUL CHECK** — Score across 5 dimensions (rhythm, voice, density, authenticity, directness). Must pass 35/50 gate.
-4. **ADVERSARIAL AUDIT** — "What makes this obviously AI?" List remaining tells with line references.
-5. **FINAL REWRITE** — Fix audit findings. Run 12-item binary checklist. All must pass.
-6. **OUTPUT** — Present final text with scan count, score, and checklist as proof of work.
+1. **Scan.** Check every sentence against all lists and count the patterns.
+2. **Rewrite.** Fix everything flagged. Match your voice profile if you have one.
+3. **Soul check.** Score rhythm, voice, density, authenticity, and fit for the audience. Must reach 35/50.
+4. **Adversarial audit.** "What makes this obviously AI?" and "Would the sender actually write this?"
+5. **Final rewrite.** Fix what the audit found. Run the 12-item checklist. All items must pass.
+6. **Output.** The final text and a one-line summary, or the full proof of work in audit mode.
 
 ## Install
 
 ### Claude Code
 
 ```bash
-claude mcp add-skill ~/.claude/skills/deslop
-```
-
-Or copy the files manually:
-
-```bash
 git clone https://github.com/markmcnair/deslop.git ~/.claude/skills/deslop
 ```
 
-### Manual / Other agents
+### Manual / other agents
 
-Copy `SKILL.md` and the `references/` directory into your agent's skill or knowledge folder.
+Copy `SKILL.md`, the `references/` directory, and the `voice/` directory into your agent's skill or knowledge folder.
 
 ## Usage
-
-Give it text to process:
 
 ```
 deslop this: [your text here]
@@ -61,44 +66,64 @@ deslop this: [your text here]
 
 ### Modes
 
-- **Full pipeline** (default): All 6 steps with scoring and checklists
-- **Quick mode** (`quick deslop`): Scan, rewrite, checklist. Skips scoring and adversarial audit. For text under 3 sentences.
-- **Detect mode** (`deslop check`): Scan only. Shows pattern counts without rewriting.
+| Trigger | Mode | What you get |
+|---|---|---|
+| `deslop this` | Quiet (default) | Final text and a one-line summary of changes |
+| `deslop audit` | Audit | Scan counts, scores, audit, checklist, and the final text |
+| `deslop email`, `deslop message`, or any email, Slack, or text input | Message | Email and message tells removed, answer first, no headers or bold |
+| `quick deslop` | Quick | Scan, rewrite, checklist. For text under 3 sentences |
+| `deslop check` | Detect | Pattern counts only, no rewrite |
 
-## Zero-tolerance rules
+Message mode combines with quiet or audit mode.
 
-These are hard bans, not suggestions:
+## Your voice
 
-| Pattern | Tolerance |
+deslop can match the way you write. Collect your own sent emails and messages, have your agent distill them into `voice/voice-profile.md` using the template, and deslop will read it on every run.
+
+Your profile and samples are listed in `.gitignore`. They never leave your machine through this repo. Full instructions are in [voice/README.md](voice/README.md).
+
+## Rules at a glance
+
+| Pattern | Rule |
 |---|---|
-| Em dashes (—) | Zero. Commas or periods. |
-| Adverbs (-ly) | Zero. Stronger verb or cut. |
+| Em dashes | Zero. Commas or periods. |
 | Emojis | Zero. |
 | Curly quotes | Zero. Straight quotes only. |
-| Bold in body text | Zero. Headings only. |
-| Title case headings | Zero. Sentence case. |
-| "Serves as" / "stands as" | Zero. Use "is". |
-| Performative candor | Zero. Just be direct. |
+| Adverbs (-ly) | Intensifiers banned. Whitelisted words allowed, one per paragraph at most in formal writing. |
+| Passive voice | Fine when the actor is unknown or irrelevant. Rewrite when it hides a known actor. |
+| Bold in body text | None. Headings only, and never in short emails. |
+| Title case headings | None. Sentence case. |
+| "Serves as" / "stands as" | Use "is". |
+| Performative candor | Cut. Be direct. |
+| Casual asides | Only in casual registers. Never forced into professional writing. |
+
+## Keeping the lists current
+
+deslop flags new tells it keeps seeing as suggested additions at the end of its output. Review the lists about once a quarter: add what keeps coming up, remove anything causing false positives, and note it in the changelog.
 
 ## Built from
 
-This skill merges the best parts of several approaches:
-
-- Pattern catalog depth from [avoid-ai-writing](https://github.com/conorbronsdon/avoid-ai-writing) (36 patterns)
+- Pattern catalog depth from [avoid-ai-writing](https://github.com/conorbronsdon/avoid-ai-writing)
 - Scoring system and zero-tolerance rules from [stop-slop](https://github.com/hardikpandya/stop-slop)
-- "Add Soul" methodology from [blader/humanizer](https://github.com/blader/humanizer)
+- "Add soul" methodology from [blader/humanizer](https://github.com/blader/humanizer)
 - All rooted in Wikipedia's [Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) guide
 
 ## File structure
 
 ```
 deslop/
-  SKILL.md              — Process pipeline and rules
+  SKILL.md                         Process pipeline and rules
+  CHANGELOG.md                     Version history
   references/
-    vocabulary.md       — Tiered word ban list (79 Tier 1 + 20 Tier 2 + 15 Tier 3)
-    phrases.md          — Banned phrases by category (100+)
-    structures.md       — Structural pattern bans (20)
-    examples.md         — Before/after transformations (12)
+    vocabulary.md                  Tiered word ban list and -ly whitelist
+    phrases.md                     Banned phrases, including email and message tells
+    structures.md                  Structural patterns (26)
+    examples.md                    Before/after transformations
+  voice/
+    README.md                      How to build a voice profile
+    voice-profile.template.md      Blank template
+    voice-profile.md               Your profile (git-ignored, you create it)
+    samples/                       Your raw samples (git-ignored)
 ```
 
 ## License
