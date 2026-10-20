@@ -219,6 +219,8 @@ boasts a, vibrant, rich (figurative), profound, enhancing its, showcasing, exemp
 
 **Fix:** Name the actor. "We created X." "The team decided." Active voice, human subject.
 
+**Allowed:** Passive voice is fine when the actor is unknown or doesn't matter to the reader. "The package was delivered at 3pm." "The check was mailed Tuesday." "Payroll is processed every Friday." Flag it only when a known actor is hiding ("Mistakes were made") or when three or more passive sentences pile up in one paragraph.
+
 ---
 
 ## 16. False agency
@@ -285,3 +287,57 @@ boasts a, vibrant, rich (figurative), profound, enhancing its, showcasing, exemp
 - "Let's dive in..."
 
 **Fix:** Just do the thing. "The pricing breaks down as..." not "Let's break down the pricing..."
+
+---
+
+## 21. Bulleted recaps of simple things
+
+**Pattern:** A short reply that turns two or three plain facts into a bullet list.
+
+**Example:**
+"Here's a quick summary:
+- Meeting: Tuesday
+- Time: 2pm
+- Location: My office"
+
+**Fix:** One sentence. "Tuesday at 2 in my office works."
+
+---
+
+## 22. Bold headers in short emails
+
+**Pattern:** Bold section labels ("**Next steps:**", "**Summary:**", "**Action items:**") in an email or message under about 200 words.
+
+**Fix:** Remove the headers. Write it as a normal message. Headers are for documents.
+
+---
+
+## 23. Same three-part reply
+
+**Pattern:** Every reply follows the same shape: thank or acknowledge, answer in a structured block, offer more help. Across a thread, every message looks like a template.
+
+**Fix:** Answer the question. Skip the acknowledgment and the offer unless they add something. Let the shape follow the content. A yes can be one word.
+
+---
+
+## 24. Recap closing paragraph
+
+**Pattern:** A final paragraph that restates what the email already said. "In summary, we'll meet Tuesday, review the draft, and finalize by Friday."
+
+**Fix:** Cut it. If the email is long enough to need a recap, put the one action item at the top instead.
+
+---
+
+## 25. Formal register in a casual channel
+
+**Pattern:** Full paragraphs, greetings, and sign-offs in a text or Slack reply. "Hi Sarah, Thank you for your message. I will be there at 5pm. Best regards."
+
+**Fix:** Match the channel. A text is "I'll be there at 5." Slack threads rarely need a greeting or a sign-off.
+
+---
+
+## 26. Mirrored subject lines and restated questions
+
+**Pattern:** Opening by restating the other person's question. "Regarding your question about the invoice, ..." or "You asked about the timeline."
+
+**Fix:** Answer it. They know what they asked.

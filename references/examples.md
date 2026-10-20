@@ -108,7 +108,7 @@ Each example shows a specific pattern being fixed. Use these as calibration for 
 **After:**
 > Most startups fail because the founders run out of energy. Not funding, not product-market fit. Building a company is exhausting and that doesn't get talked about enough.
 
-**What changed:** Removed "The honest answer is," "Let's cut through the noise," "Here's the thing." The content is the same — it just stopped announcing its own honesty.
+**What changed:** Removed "The honest answer is," "Let's cut through the noise," "Here's the thing." The content is the same. It just stopped announcing its own honesty.
 
 ---
 
@@ -145,3 +145,46 @@ Each example shows a specific pattern being fixed. Use these as calibration for 
 > AI coding assistants can make you faster at the boring parts. Not everything. They're great at boilerplate: config files, test scaffolding, repetitive refactors. They're also great at sounding right while being wrong. I've accepted suggestions that compiled and passed lint but still missed the point because I stopped paying attention.
 
 **What changed:** Removed chatbot artifacts, significance inflation ("testament," "pivotal moment," "evolving landscape"), promotional language ("groundbreaking," "nestled"), em dashes, binary contrast ("not just X, it's Y"), copula avoidance ("serves as," "functions as," "stands as"), rule-of-three, superficial vocabulary ("transformative," "vital," "underscore"). Added first-person voice, specific experience, and human rhythm.
+
+---
+
+## Email reply (message mode)
+
+**Before:**
+> Hi Tom,
+>
+> I hope this email finds you well! Thank you so much for reaching out about the invoice.
+>
+> **Quick summary:**
+> - Invoice: #4417
+> - Status: Paid
+> - Date: October 12
+>
+> In summary, the invoice has been paid as of October 12. Please don't hesitate to reach out if you have any other questions. Happy to help with anything!
+>
+> Best regards,
+> Sam
+
+**After (to a vendor Sam knows):**
+> Hey Tom, #4417 was paid on Oct 12. Let me know if it doesn't show up on your end.
+>
+> Sam
+
+**What changed:** Cut the greeting filler, the bulleted recap of three facts, the bold header, the recap paragraph, and the stacked closers. The answer moved to the first line.
+
+---
+
+## Audience scaling
+
+**Same message, two audiences.**
+
+**To an accountant:**
+> Hi Brianna, the signed 2025 return is attached. One question: should the Q4 estimated payment go out before or after the K-1 arrives?
+>
+> Thanks,
+> Sam
+
+**To a close coworker on Slack:**
+> signed it, sent it. still waiting on the K-1 though, ugh
+
+**What changed:** The facts are the same. The professional version is clean and direct with no forced jokes. The coworker version is loose because the relationship and the channel allow it.

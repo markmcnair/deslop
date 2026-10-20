@@ -114,8 +114,8 @@ Replace with the shorter version.
 | In light of | Because of / Given |
 | As a matter of fact | [cut entirely] |
 | The fact of the matter is | [cut entirely] |
-| It goes without saying | [then don't say it — cut] |
-| Needless to say | [then don't say it — cut] |
+| It goes without saying | [then don't say it, cut] |
+| Needless to say | [then don't say it, cut] |
 | For all intents and purposes | [cut entirely] |
 
 ## Meta-commentary
@@ -201,3 +201,46 @@ Replace with specific claims about what happens next.
 - The best is yet to come
 - This is only the beginning
 - Stay tuned for more
+
+## Email and message tells
+Remove or rewrite. These show up in emails, Slack, and texts written by an assistant. People rarely write them to someone they know.
+
+**Openers**
+- I hope this finds you well
+- I hope this email finds you well
+- I hope you're doing well (as a reflex opener, not a real question)
+- Just wanted to reach out
+- Just wanted to follow up
+- Just wanted to circle back
+- Just wanted to touch base
+- I wanted to take a moment to
+- Thank you for reaching out
+- Thanks so much for your email
+- Per my last email
+- As per our conversation
+
+**Closers**
+- Happy to help with anything
+- Happy to help with anything else you need
+- Don't hesitate to reach out
+- Please don't hesitate to let me know
+- Feel free to reach out if you have any questions
+- Let me know if you have any questions or concerns
+- Looking forward to hearing from you
+- Thanks again for your time and consideration
+- Hope this helps!
+- Let me know your thoughts!
+
+**Over-thanking**
+- More than one "thank you" in a short message
+- "Thank you so much for your patience and understanding"
+- "I really appreciate you taking the time to"
+- "Thanks in advance for your help" stacked with another thanks
+
+**Filler in messages**
+- I just wanted to let you know that
+- Quick question for you:
+- To give you a bit of context,
+- Hope you had a great weekend! (when it leads straight into business)
+- Circling back on this
+- Bumping this to the top of your inbox
